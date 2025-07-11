@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "b251915f-29b0-4ef8-8013-ad226e16d87c",
+		"name": "homework_3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8428428"
+	},
+	"item": [
+		{
+			"name": "comprehansive_test_hw3",
+			"item": [
+				{
+					"name": "Single request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const randomUser = Math.floor(Math.random() * 100000);",
+									"const email = `user_${randomUser}@gmail.com`;",
+									"const password = `Pass${randomUser}`;",
+									"",
+									"pm.environment.set(\"uniqueEmail\", email);",
+									"pm.environment.set(\"password\", password);",
+									"",
+									"console.log(JSON.stringify(pm.iterationData.get(\"data\")))",
+									"",
+									"",
+									"pm.variables.set(\"body\",JSON.stringify(pm.iterationData.get(\"data\")));",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "uniqueEmail",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		}
+	]
+}
